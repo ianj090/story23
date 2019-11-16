@@ -5,20 +5,14 @@ using UnityEngine.UI;
 
 public class Projectile_e : MonoBehaviour
 {
-    static Text scoreText;
-    static int score;
-
-
     // Start is called before the first frame update
     void Start()
     {
-        scoreText = GameObject.Find("Score Text").GetComponentInChildren<Text>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        SetScoreText();
     }
 
     void OnCollisionEnter(Collision other)
@@ -27,12 +21,9 @@ public class Projectile_e : MonoBehaviour
         {
             Destroy(other.gameObject);
         }
+        if (other.gameObject.CompareTag("Enemy"))
+        {
+            Destroy(this.gameObject);
+        }
     }
-
-    void SetScoreText()
-    {
-        //Debug.Log("working");
-        scoreText.text = "Score: " + score.ToString();
-    }
-
 }

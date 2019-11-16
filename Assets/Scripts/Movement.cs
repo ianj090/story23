@@ -7,14 +7,10 @@ public class Movement : MonoBehaviour
 {
     public GameObject projectile;
     Vector3 spawnPoint;
-    //public Text scoreText;
-    //private int score;
 
     // Start is called before the first frame update
     void Start()
     {
-        //scoreText.text = "";
-        //score = 0;
     }
 
     // Update is called once per frame
@@ -53,13 +49,5 @@ public class Movement : MonoBehaviour
 
             Destroy(bullet, 1.0f);
         }
-
-        //SetScoreText();
-
     }
-
-    //void SetScoreText()
-    //{
-    //    scoreText.text = "Score: " + score.ToString();
-    //}
 }

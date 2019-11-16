@@ -13,6 +13,10 @@ public class Projectile : MonoBehaviour
     void Start()
     {
         scoreText = GameObject.Find("Score Text").GetComponentInChildren<Text>();
+        if (Time.timeSinceLevelLoad < 1)
+        {
+            score = 0;
+        }
     }
 
     // Update is called once per frame
@@ -25,37 +29,23 @@ public class Projectile : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Enemy"))
         {
-            //Debug.Log("yeah");
             Vector3 rowX = new Vector3(Random.Range(-10, 10),
                                     Random.Range(1, 1), Random.Range(7, 7));
             other.transform.position = rowX;
             score += 10;
-            //SetScoreText();
-
-            //StartCoroutine(waiter());
-            //string objectColor = other.gameObject.GetComponent<Renderer>().sharedMaterial.name;
-            //Debug.Log(objectColor);
-            //Debug.Log(main_color);
-            //if (main_color.Equals(objectColor))
-            //{
-            //    count = count + 1;
-            //}
-            //SetCountText();
         }
         if (other.gameObject.CompareTag("Player"))
         {
             Destroy(other.gameObject);
         }
-        //Debug.Log("Name: " + other.gameObject.name + " Tag: " + other.gameObject.tag);
-        //else
-        //{
-        //    Debug.Log("nah");
-        //}
+        if (other.gameObject.CompareTag("Wall"))
+        {
+            Physics.IgnoreCollision(other.collider, GetComponent<Collider>());
+        }
     }
 
     void SetScoreText()
     {
-        //Debug.Log("working");
         scoreText.text = "Score: " + score.ToString();
     }
 
